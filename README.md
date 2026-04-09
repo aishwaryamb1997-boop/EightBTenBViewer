@@ -16,7 +16,7 @@ Each non-empty line should be:
 <Timestamp>: <640-bit binary string>
 
 
-## How It Works (High Level)
+## How It Works 
 - `FileReaderService` loads the trace file and validates each line.
 - `BitProcessorService` splits 640-bit strings into 16 lanes and 10-bit symbols.
 - `EightBTenBDecoder` decodes 10-bit symbols into D/K types and hex values.
