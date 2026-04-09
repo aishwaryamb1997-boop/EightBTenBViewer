@@ -14,8 +14,7 @@ EightBTenBViewer is a WPF desktop tool that reads a 640-bit trace file, splits e
 Each non-empty line should be:
 ```
 <Timestamp>: <640-bit binary string>
-```
-Lines with missing fields or invalid bit length are skipped.
+
 
 ## How It Works (High Level)
 - `FileReaderService` loads the trace file and validates each line.
@@ -43,7 +42,6 @@ The input file path is currently hardcoded in `MainViewModel`:
 ```
 C:\Users\Prodigy technovation\source\MIL1553\EightBTenBViewer\vc.txt
 ```
-Update that path to point to your local trace file if needed.
 
 ## CSV Export
 Click **Export CSV** in the UI to save the decoded grid to a `.csv` file.
