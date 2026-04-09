@@ -23,12 +23,9 @@ Each non-empty line should be:
 - `MainWindow` shows results and allows CSV export.
 
 ## Build and Run
-Prerequisites:
-- Windows
-- .NET 8 SDK
-
-Build: dotnet build
-Run: dotnet run
+  Build: dotnet build
+  
+  Run: dotnet run
 ---
 
 ## Configure the Input File
