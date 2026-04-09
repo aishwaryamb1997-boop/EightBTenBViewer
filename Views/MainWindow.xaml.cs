@@ -63,17 +63,28 @@ namespace EightBTenBViewer.Views
 
             foreach (var record in records)
             {
-                sb.Append(EscapeCsv(record.SerialNo.ToString()));
-                sb.Append(",");
-                sb.Append(EscapeCsv(record.Timestamp));
-
-                for (int lane = 0; lane < 16; lane++)
+                for (int row = 0; row < 4; row++)
                 {
-                    sb.Append(",");
-                    sb.Append(EscapeCsv(FormatLane(record, lane)));
-                }
+                    if (row == 0)
+                    {
+                        sb.Append(EscapeCsv(record.SerialNo.ToString()));
+                        sb.Append(",");
+                        sb.Append(EscapeCsv(record.Timestamp));
+                    }
+                    else
+                    {
+                        sb.Append(",");
+                        sb.Append("");
+                    }
 
-                sb.AppendLine();
+                    for (int lane = 0; lane < 16; lane++)
+                    {
+                        sb.Append(",");
+                        sb.Append(EscapeCsv(FormatLaneRow(record, lane, row)));
+                    }
+
+                    sb.AppendLine();
+                }
             }
 
             return sb.ToString();
@@ -94,7 +105,7 @@ namespace EightBTenBViewer.Views
             return value;
         }
 
-        private static string FormatLane(TraceRecord record, int lane)
+        private static string FormatLaneRow(TraceRecord record, int lane, int row)
         {
             if (record.Lanes == null || lane < 0 || lane >= record.Lanes.Count)
             {
@@ -102,12 +113,13 @@ namespace EightBTenBViewer.Views
             }
 
             var symbols = record.Lanes[lane].Symbols;
-            if (symbols == null || symbols.Count == 0)
+            if (symbols == null || symbols.Count == 0 || row < 0 || row >= symbols.Count)
             {
                 return string.Empty;
             }
 
-            return string.Join("\n", symbols.Select(s => $"{s.Bits10} {s.Type} {s.Hex}"));
+            var symbol = symbols[row];
+            return $"{symbol.Bits10} {symbol.Type} {symbol.Hex}";
         }
 
     }

@@ -158,8 +158,8 @@ namespace EightBTenBViewer.Services
                 return new DecodedSymbol
                 {
                     Bits10 = bits10,
-                    Type = $"{info.Kind} ({info.Name})",
-                    Hex = $"0x{info.Value:X2}"
+                    Type = info.Name,
+                    Hex = $"{info.Value:X2}"
                 };
             }
 
@@ -168,8 +168,8 @@ namespace EightBTenBViewer.Services
                 return new DecodedSymbol
                 {
                     Bits10 = bits10,
-                    Type = $"{looseInfo.Kind} ({looseInfo.Name})",
-                    Hex = $"0x{looseInfo.Value:X2}"
+                    Type = looseInfo.Name,
+                    Hex = $"{looseInfo.Value:X2}"
                 };
             }
 

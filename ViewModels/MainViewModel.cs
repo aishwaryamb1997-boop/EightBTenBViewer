@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using EightBTenBViewer.Models;
 using EightBTenBViewer.Services;
@@ -7,6 +8,7 @@ namespace EightBTenBViewer.ViewModels
     public class MainViewModel
     {
         public ObservableCollection<TraceRecord> Records { get; set; } = new();
+        public ObservableCollection<TraceRow> Rows { get; set; } = new();
 
         public MainViewModel()
         {
@@ -33,6 +35,24 @@ namespace EightBTenBViewer.ViewModels
                     Timestamp = item.Timestamp,
                     Lanes = lanes
                 });
+
+                for (int row = 0; row < 4; row++)
+                {
+                    var laneSymbols = new List<DecodedSymbol>(16);
+                    for (int lane = 0; lane < 16; lane++)
+                    {
+                        var symbols = lanes[lane].Symbols;
+                        laneSymbols.Add(row < symbols.Count ? symbols[row] : new DecodedSymbol());
+                    }
+
+                    Rows.Add(new TraceRow
+                    {
+                        SerialNo = sl - 1,
+                        Timestamp = item.Timestamp,
+                        RowIndex = row,
+                        LaneSymbols = laneSymbols
+                    });
+                }
             }
         }
     }

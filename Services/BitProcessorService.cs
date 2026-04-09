@@ -49,7 +49,8 @@ namespace EightBTenBViewer.Services
                 // 🔹 Ensure original 10-bit value is preserved
                 decoded.Bits10 = reversed;
 
-                symbols.Insert(0, decoded);
+                // Keep right-to-left order so index 0 shows the first (rightmost) 10b chunk.
+                symbols.Add(decoded);
             }
 
             return new Lane { Symbols = symbols };

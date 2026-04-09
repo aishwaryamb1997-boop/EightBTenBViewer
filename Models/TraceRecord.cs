@@ -20,4 +20,12 @@ namespace EightBTenBViewer.Models
         public string Type { get; set; } = string.Empty;
         public string Hex { get; set; } = string.Empty;
     }
+
+    public class TraceRow
+    {
+        public int SerialNo { get; set; }
+        public string Timestamp { get; set; } = string.Empty;
+        public int RowIndex { get; set; }
+        public List<DecodedSymbol> LaneSymbols { get; set; } = new();
+    }
 }

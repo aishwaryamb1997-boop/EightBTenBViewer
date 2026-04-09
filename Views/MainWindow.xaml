@@ -1,402 +1,176 @@
 <Window x:Class="EightBTenBViewer.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:conv="clr-namespace:EightBTenBViewer.Converters"
         Title="EightBTenBViewer" Height="450" Width="800">
+    <Window.Resources>
+        <conv:FirstRowOnlyConverter x:Key="FirstRowOnlyConverter"/>
+    </Window.Resources>
 <DockPanel>
     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="8,6,8,4">
         <Button Content="Export CSV" Padding="10,4" Click="ExportCsv_Click"/>
     </StackPanel>
 
-    <DataGrid ItemsSource="{Binding Records}" AutoGenerateColumns="False">
+    <Grid DockPanel.Dock="Top" Margin="8,0,8,4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="150"/>
+            <!-- L0 -->
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="60"/>
+            <!-- L1 -->
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="60"/>
+            <!-- L2 -->
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="60"/>
+            <!-- L3 -->
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="60"/>
+            <!-- L4 -->
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="60"/>
+            <!-- L5 -->
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="60"/>
+            <!-- L6 -->
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="60"/>
+            <!-- L7 -->
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="60"/>
+            <!-- L8 -->
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="60"/>
+            <!-- L9 -->
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="60"/>
+            <!-- L10 -->
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="60"/>
+            <!-- L11 -->
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="60"/>
+            <!-- L12 -->
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="60"/>
+            <!-- L13 -->
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="60"/>
+            <!-- L14 -->
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="60"/>
+            <!-- L15 -->
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="60"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="SL" Grid.Column="0" FontWeight="SemiBold"/>
+        <TextBlock Text="Timestamp" Grid.Column="1" FontWeight="SemiBold"/>
+
+        <TextBlock Text="L0" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+        <TextBlock Text="L1" Grid.Column="5" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+        <TextBlock Text="L2" Grid.Column="8" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+        <TextBlock Text="L3" Grid.Column="11" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+        <TextBlock Text="L4" Grid.Column="14" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+        <TextBlock Text="L5" Grid.Column="17" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+        <TextBlock Text="L6" Grid.Column="20" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+        <TextBlock Text="L7" Grid.Column="23" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+        <TextBlock Text="L8" Grid.Column="26" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+        <TextBlock Text="L9" Grid.Column="29" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+        <TextBlock Text="L10" Grid.Column="32" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+        <TextBlock Text="L11" Grid.Column="35" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+        <TextBlock Text="L12" Grid.Column="38" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+        <TextBlock Text="L13" Grid.Column="41" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+        <TextBlock Text="L14" Grid.Column="44" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+        <TextBlock Text="L15" Grid.Column="47" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="SemiBold"/>
+    </Grid>
+
+    <DataGrid ItemsSource="{Binding Rows}" AutoGenerateColumns="False" HeadersVisibility="None">
 
     <DataGrid.Columns>
 
-    <DataGridTextColumn Header="SL" Binding="{Binding SerialNo}" Width="50"/>
-    <DataGridTextColumn Header="Timestamp" Binding="{Binding Timestamp}" Width="150"/>
+    <DataGridTextColumn Width="50">
+        <DataGridTextColumn.Binding>
+            <MultiBinding Converter="{StaticResource FirstRowOnlyConverter}">
+                <Binding Path="SerialNo"/>
+                <Binding Path="RowIndex"/>
+            </MultiBinding>
+        </DataGridTextColumn.Binding>
+    </DataGridTextColumn>
+    <DataGridTextColumn Width="150">
+        <DataGridTextColumn.Binding>
+            <MultiBinding Converter="{StaticResource FirstRowOnlyConverter}">
+                <Binding Path="Timestamp"/>
+                <Binding Path="RowIndex"/>
+            </MultiBinding>
+        </DataGridTextColumn.Binding>
+    </DataGridTextColumn>
 
-    <!-- L0 -->
-    <DataGridTemplateColumn Header="L0" Width="240">
-        <DataGridTemplateColumn.CellTemplate>
-            <DataTemplate>
-                <ItemsControl ItemsSource="{Binding Lanes[0].Symbols}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="90"/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="50"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Bits10}" Grid.Column="0"/>
-                                <TextBlock Text="{Binding Type}" Grid.Column="1" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding Hex}" Grid.Column="2" HorizontalAlignment="Center"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DataTemplate>
-        </DataGridTemplateColumn.CellTemplate>
-    </DataGridTemplateColumn>
-
-    <!-- L1 -->
-    <DataGridTemplateColumn Header="L1" Width="240">
-        <DataGridTemplateColumn.CellTemplate>
-            <DataTemplate>
-                <ItemsControl ItemsSource="{Binding Lanes[1].Symbols}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="90"/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="50"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Bits10}" Grid.Column="0"/>
-                                <TextBlock Text="{Binding Type}" Grid.Column="1" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding Hex}" Grid.Column="2" HorizontalAlignment="Center"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DataTemplate>
-        </DataGridTemplateColumn.CellTemplate>
-    </DataGridTemplateColumn>
-
-    <!-- L2 -->
-    <DataGridTemplateColumn Header="L2" Width="240">
-        <DataGridTemplateColumn.CellTemplate>
-            <DataTemplate>
-                <ItemsControl ItemsSource="{Binding Lanes[2].Symbols}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="90"/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="50"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Bits10}" Grid.Column="0"/>
-                                <TextBlock Text="{Binding Type}" Grid.Column="1" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding Hex}" Grid.Column="2" HorizontalAlignment="Center"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DataTemplate>
-        </DataGridTemplateColumn.CellTemplate>
-    </DataGridTemplateColumn>
-
-    <!-- L3 -->
-    <DataGridTemplateColumn Header="L3" Width="240">
-        <DataGridTemplateColumn.CellTemplate>
-            <DataTemplate>
-                <ItemsControl ItemsSource="{Binding Lanes[3].Symbols}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="90"/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="50"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Bits10}" Grid.Column="0"/>
-                                <TextBlock Text="{Binding Type}" Grid.Column="1" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding Hex}" Grid.Column="2" HorizontalAlignment="Center"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DataTemplate>
-        </DataGridTemplateColumn.CellTemplate>
-    </DataGridTemplateColumn>
-
-    <!-- L4 -->
-    <DataGridTemplateColumn Header="L4" Width="240">
-        <DataGridTemplateColumn.CellTemplate>
-            <DataTemplate>
-                <ItemsControl ItemsSource="{Binding Lanes[4].Symbols}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="90"/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="50"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Bits10}" Grid.Column="0"/>
-                                <TextBlock Text="{Binding Type}" Grid.Column="1" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding Hex}" Grid.Column="2" HorizontalAlignment="Center"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DataTemplate>
-        </DataGridTemplateColumn.CellTemplate>
-    </DataGridTemplateColumn>
-
-    <!-- L5 -->
-    <DataGridTemplateColumn Header="L5" Width="240">
-        <DataGridTemplateColumn.CellTemplate>
-            <DataTemplate>
-                <ItemsControl ItemsSource="{Binding Lanes[5].Symbols}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="90"/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="50"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Bits10}" Grid.Column="0"/>
-                                <TextBlock Text="{Binding Type}" Grid.Column="1" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding Hex}" Grid.Column="2" HorizontalAlignment="Center"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DataTemplate>
-        </DataGridTemplateColumn.CellTemplate>
-    </DataGridTemplateColumn>
-
-    <!-- L6 -->
-    <DataGridTemplateColumn Header="L6" Width="240">
-        <DataGridTemplateColumn.CellTemplate>
-            <DataTemplate>
-                <ItemsControl ItemsSource="{Binding Lanes[6].Symbols}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="90"/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="50"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Bits10}" Grid.Column="0"/>
-                                <TextBlock Text="{Binding Type}" Grid.Column="1" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding Hex}" Grid.Column="2" HorizontalAlignment="Center"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DataTemplate>
-        </DataGridTemplateColumn.CellTemplate>
-    </DataGridTemplateColumn>
-
-    <!-- L7 -->
-    <DataGridTemplateColumn Header="L7" Width="240">
-        <DataGridTemplateColumn.CellTemplate>
-            <DataTemplate>
-                <ItemsControl ItemsSource="{Binding Lanes[7].Symbols}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="90"/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="50"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Bits10}" Grid.Column="0"/>
-                                <TextBlock Text="{Binding Type}" Grid.Column="1" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding Hex}" Grid.Column="2" HorizontalAlignment="Center"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DataTemplate>
-        </DataGridTemplateColumn.CellTemplate>
-    </DataGridTemplateColumn>
-
-    <!-- L8 -->
-    <DataGridTemplateColumn Header="L8" Width="240">
-        <DataGridTemplateColumn.CellTemplate>
-            <DataTemplate>
-                <ItemsControl ItemsSource="{Binding Lanes[8].Symbols}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="90"/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="50"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Bits10}" Grid.Column="0"/>
-                                <TextBlock Text="{Binding Type}" Grid.Column="1" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding Hex}" Grid.Column="2" HorizontalAlignment="Center"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DataTemplate>
-        </DataGridTemplateColumn.CellTemplate>
-    </DataGridTemplateColumn>
-
-    <!-- L9 -->
-    <DataGridTemplateColumn Header="L9" Width="240">
-        <DataGridTemplateColumn.CellTemplate>
-            <DataTemplate>
-                <ItemsControl ItemsSource="{Binding Lanes[9].Symbols}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="90"/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="50"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Bits10}" Grid.Column="0"/>
-                                <TextBlock Text="{Binding Type}" Grid.Column="1" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding Hex}" Grid.Column="2" HorizontalAlignment="Center"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DataTemplate>
-        </DataGridTemplateColumn.CellTemplate>
-    </DataGridTemplateColumn>
-
-    <!-- L10 -->
-    <DataGridTemplateColumn Header="L10" Width="240">
-        <DataGridTemplateColumn.CellTemplate>
-            <DataTemplate>
-                <ItemsControl ItemsSource="{Binding Lanes[10].Symbols}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="90"/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="50"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Bits10}" Grid.Column="0"/>
-                                <TextBlock Text="{Binding Type}" Grid.Column="1" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding Hex}" Grid.Column="2" HorizontalAlignment="Center"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DataTemplate>
-        </DataGridTemplateColumn.CellTemplate>
-    </DataGridTemplateColumn>
-
-    <!-- L11 -->
-    <DataGridTemplateColumn Header="L11" Width="240">
-        <DataGridTemplateColumn.CellTemplate>
-            <DataTemplate>
-                <ItemsControl ItemsSource="{Binding Lanes[11].Symbols}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="90"/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="50"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Bits10}" Grid.Column="0"/>
-                                <TextBlock Text="{Binding Type}" Grid.Column="1" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding Hex}" Grid.Column="2" HorizontalAlignment="Center"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DataTemplate>
-        </DataGridTemplateColumn.CellTemplate>
-    </DataGridTemplateColumn>
-
-    <!-- L12 -->
-    <DataGridTemplateColumn Header="L12" Width="240">
-        <DataGridTemplateColumn.CellTemplate>
-            <DataTemplate>
-                <ItemsControl ItemsSource="{Binding Lanes[12].Symbols}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="90"/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="50"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Bits10}" Grid.Column="0"/>
-                                <TextBlock Text="{Binding Type}" Grid.Column="1" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding Hex}" Grid.Column="2" HorizontalAlignment="Center"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DataTemplate>
-        </DataGridTemplateColumn.CellTemplate>
-    </DataGridTemplateColumn>
-
-    <!-- L13 -->
-    <DataGridTemplateColumn Header="L13" Width="240">
-        <DataGridTemplateColumn.CellTemplate>
-            <DataTemplate>
-                <ItemsControl ItemsSource="{Binding Lanes[13].Symbols}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="90"/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="50"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Bits10}" Grid.Column="0"/>
-                                <TextBlock Text="{Binding Type}" Grid.Column="1" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding Hex}" Grid.Column="2" HorizontalAlignment="Center"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DataTemplate>
-        </DataGridTemplateColumn.CellTemplate>
-    </DataGridTemplateColumn>
-
-    <!-- L14 -->
-    <DataGridTemplateColumn Header="L14" Width="240">
-        <DataGridTemplateColumn.CellTemplate>
-            <DataTemplate>
-                <ItemsControl ItemsSource="{Binding Lanes[14].Symbols}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="90"/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="50"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Bits10}" Grid.Column="0"/>
-                                <TextBlock Text="{Binding Type}" Grid.Column="1" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding Hex}" Grid.Column="2" HorizontalAlignment="Center"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DataTemplate>
-        </DataGridTemplateColumn.CellTemplate>
-    </DataGridTemplateColumn>
-
-    <!-- L15 -->
-    <DataGridTemplateColumn Header="L15" Width="240">
-        <DataGridTemplateColumn.CellTemplate>
-            <DataTemplate>
-                <ItemsControl ItemsSource="{Binding Lanes[15].Symbols}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="90"/>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="50"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Bits10}" Grid.Column="0"/>
-                                <TextBlock Text="{Binding Type}" Grid.Column="1" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding Hex}" Grid.Column="2" HorizontalAlignment="Center"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DataTemplate>
-        </DataGridTemplateColumn.CellTemplate>
-    </DataGridTemplateColumn>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[0].Bits10}" Width="110"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[0].Type}" Width="70"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[0].Hex}" Width="60"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[1].Bits10}" Width="110"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[1].Type}" Width="70"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[1].Hex}" Width="60"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[2].Bits10}" Width="110"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[2].Type}" Width="70"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[2].Hex}" Width="60"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[3].Bits10}" Width="110"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[3].Type}" Width="70"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[3].Hex}" Width="60"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[4].Bits10}" Width="110"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[4].Type}" Width="70"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[4].Hex}" Width="60"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[5].Bits10}" Width="110"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[5].Type}" Width="70"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[5].Hex}" Width="60"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[6].Bits10}" Width="110"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[6].Type}" Width="70"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[6].Hex}" Width="60"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[7].Bits10}" Width="110"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[7].Type}" Width="70"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[7].Hex}" Width="60"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[8].Bits10}" Width="110"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[8].Type}" Width="70"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[8].Hex}" Width="60"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[9].Bits10}" Width="110"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[9].Type}" Width="70"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[9].Hex}" Width="60"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[10].Bits10}" Width="110"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[10].Type}" Width="70"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[10].Hex}" Width="60"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[11].Bits10}" Width="110"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[11].Type}" Width="70"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[11].Hex}" Width="60"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[12].Bits10}" Width="110"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[12].Type}" Width="70"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[12].Hex}" Width="60"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[13].Bits10}" Width="110"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[13].Type}" Width="70"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[13].Hex}" Width="60"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[14].Bits10}" Width="110"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[14].Type}" Width="70"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[14].Hex}" Width="60"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[15].Bits10}" Width="110"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[15].Type}" Width="70"/>
+    <DataGridTextColumn Binding="{Binding LaneSymbols[15].Hex}" Width="60"/>
 
     </DataGrid.Columns>
     </DataGrid>
