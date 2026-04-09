@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "2ZcV7l8vWyc=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Prodigy technovation\\source\\MIL1553\\EightBTenBViewer\\EightBTenBViewer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Prodigy technovation\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.25\\microsoft.netcore.app.ref.8.0.25.nupkg.sha512",
+    "C:\\Users\\Prodigy technovation\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.25\\microsoft.windowsdesktop.app.ref.8.0.25.nupkg.sha512",
+    "C:\\Users\\Prodigy technovation\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.25\\microsoft.aspnetcore.app.ref.8.0.25.nupkg.sha512",
+    "C:\\Users\\Prodigy technovation\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.25\\microsoft.netcore.app.host.win-x64.8.0.25.nupkg.sha512"
+  ],
+  "logs": []
+}
